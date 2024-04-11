@@ -15,14 +15,13 @@ import ch.ata.todoapp_backend.model.Task;
 import ch.ata.todoapp_backend.service.TaskService;
 
 public class TaskController {
-    
 
     private final TaskService taskService;
 
     public TaskController(TaskService taskService) {
         this.taskService = taskService;
     }
- 
+
     @GetMapping
     public List<Task> getAllTasks() {
         return taskService.getAllTasks();
@@ -31,12 +30,13 @@ public class TaskController {
     @PostMapping
     public ResponseEntity<Task> createTask(@RequestBody Task task) {
         Task createdTask = taskService.createTask(task);
-    return new ResponseEntity<>(createdTask, HttpStatus.CREATED);
+        return new ResponseEntity<>(createdTask, HttpStatus.CREATED);
     }
 
     @GetMapping("/status/{status}")
     public List<Task> getTasksByStatus(@PathVariable String status) {
-        return taskService.getTasksByStatus(status);
+        List<Task> tasks = taskService.getTasksByStatus(status);
+        return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
