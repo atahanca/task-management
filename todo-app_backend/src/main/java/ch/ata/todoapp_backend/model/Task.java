@@ -1,5 +1,7 @@
 package ch.ata.todoapp_backend.model;
 
+import java.sql.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -11,5 +13,6 @@ public class Task {
     private String taskName;
     private String taskDescription;
     private String taskStatus;
+    private Date taskDate;
 
 }
