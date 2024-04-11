@@ -55,4 +55,8 @@ public class TaskService {
         taskRepository.deleteTaskById(id);
     }
 
+    public List<Task> getTasksByName(String name) {
+        return taskRepository.findByName(name);
+    }
+
 }

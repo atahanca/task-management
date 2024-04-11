@@ -46,8 +46,25 @@ public class TaskController {
         
     }
 
+    @GetMapping("/name/{name}")
+    public ResponseEntity<List<Task>> getTasksByName(@PathVariable String name) {
+        List<Task> tasks = taskService.getTasksByName(name);
+        return new ResponseEntity<>(tasks, HttpStatus.OK);
+    }
+
     @DeleteMapping("/{id}")
     public void deleteTaskById(@PathVariable Integer id) {
         taskService.deleteTaskById(id);
     }
+
+    public ResponseEntity<String> updateTask(@PathVariable Integer id, @RequestBody Task task) {
+        Optional<Task> updatedTask = taskService.updateTask(id, task);
+        if (updatedTask.isPresent()) {
+            return new ResponseEntity<>("Task updated successfully", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Task not found", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    
 }

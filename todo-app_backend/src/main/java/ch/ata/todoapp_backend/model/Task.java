@@ -13,7 +13,7 @@ public class Task {
 
     @Id // This tells Hibernate that this is the primary key
     @GeneratedValue(strategy = GenerationType.AUTO) // This tells Hibernate to generate the value automatically.
-    private Integer taskId; // this the primary key
+    private Integer taskId; // primary key
     private String taskName;
     private String taskDescription;
     private String taskStatus;
