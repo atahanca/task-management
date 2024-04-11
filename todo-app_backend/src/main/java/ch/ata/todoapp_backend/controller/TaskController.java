@@ -3,6 +3,8 @@ package ch.ata.todoapp_backend.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,15 +22,21 @@ public class TaskController {
     public TaskController(TaskService taskService) {
         this.taskService = taskService;
     }
-
+ 
     @GetMapping
     public List<Task> getAllTasks() {
         return taskService.getAllTasks();
     }
 
     @PostMapping
-    public List<Task> createTask(@RequestBody Task task) {
-        return taskService.createTask(task);
+    public ResponseEntity<Task> createTask(@RequestBody Task task) {
+        Task createdTask = taskService.createTask(task);
+    return new ResponseEntity<>(createdTask, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/status/{status}")
+    public List<Task> getTasksByStatus(@PathVariable String status) {
+        return taskService.getTasksByStatus(status);
     }
 
     @GetMapping("/{id}")

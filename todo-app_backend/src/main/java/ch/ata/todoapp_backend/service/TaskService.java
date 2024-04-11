@@ -16,9 +16,9 @@ public class TaskService {
     }
 
     // Create operation. This method creates a new task and saves it to the database.
-    public List<Task> createTask(Task task) {
+    public Task createTask(Task task) {
         taskRepository.save(task);
-        return taskRepository.findAll();
+        return taskRepository.save(task);
     }
 
     // Read operation. This method returns all tasks from the database.
