@@ -15,13 +15,18 @@ public class TaskService {
         this.taskRepository = taskRepository; // creates an instance of the TaskRepository class and assigns it to the taskRepository variable.
     }
 
+    // Create operation. This method creates a new task and saves it to the database.
+    public List<Task> createTask(Task task) {
+        taskRepository.save(task);
+        return taskRepository.findAll();
+    }
 
     // Read operation. This method returns all tasks from the database.
     public List<Task> getAllTasks() {
         return taskRepository.findAll();
     }
 
-
+    
     public List<Task> getTasksByStatus(String status) {
         return taskRepository.findByStatus(status);
     }
@@ -40,6 +45,10 @@ public class TaskService {
             taskRepository.save(taskToUpdate);
         }
         return taskOptional;
+    }
+
+    public void deleteTaskById(Integer id) {
+        taskRepository.deleteTaskById(id);
     }
 
     
