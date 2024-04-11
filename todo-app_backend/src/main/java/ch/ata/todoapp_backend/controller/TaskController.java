@@ -34,14 +34,16 @@ public class TaskController {
     }
 
     @GetMapping("/status/{status}")
-    public List<Task> getTasksByStatus(@PathVariable String status) {
+    public ResponseEntity<List<Task>> getTasksByStatus(@PathVariable String status) {
         List<Task> tasks = taskService.getTasksByStatus(status);
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public Optional<Task> getTaskById(@PathVariable Integer id) {
-        return taskService.getTaskById(id);
+    public ResponseEntity<Optional<Task>> getTaskById(@PathVariable Integer id) {
+        Optional<Task> task = taskService.getTaskById(id);
+        return new ResponseEntity<>(task, HttpStatus.OK);
+        
     }
 
     @DeleteMapping("/{id}")

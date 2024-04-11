@@ -7,15 +7,19 @@ import ch.ata.todoapp_backend.model.Task;
 import ch.ata.todoapp_backend.repository.TaskRepository;
 
 public class TaskService {
-    private final TaskRepository taskRepository; // creates a variable of type TaskRepository. This means that taskRepository must be an instance of TaskRepository
+    private final TaskRepository taskRepository; // creates a variable of type TaskRepository. This means that
+                                                 // taskRepository must be an instance of TaskRepository
 
-    
-    //0Construction injection. This is the constructor of the TaskService class. It takes an argument of type TaskRepository and assigns it to the taskRepository variable.
+    // 0Construction injection. This is the constructor of the TaskService class. It
+    // takes an argument of type TaskRepository and assigns it to the taskRepository
+    // variable.
     public TaskService(TaskRepository taskRepository) {
-        this.taskRepository = taskRepository; // creates an instance of the TaskRepository class and assigns it to the taskRepository variable.
+        this.taskRepository = taskRepository; // creates an instance of the TaskRepository class and assigns it to the
+                                              // taskRepository variable.
     }
 
-    // Create operation. This method creates a new task and saves it to the database.
+    // Create operation. This method creates a new task and saves it to the
+    // database.
     public Task createTask(Task task) {
         taskRepository.save(task);
         return taskRepository.save(task);
@@ -26,7 +30,7 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    
+    // Update operation. This method updates an existing task in the database
     public List<Task> getTasksByStatus(String status) {
         return taskRepository.findByStatus(status);
     }
@@ -50,7 +54,5 @@ public class TaskService {
     public void deleteTaskById(Integer id) {
         taskRepository.deleteTaskById(id);
     }
-
-    
 
 }
