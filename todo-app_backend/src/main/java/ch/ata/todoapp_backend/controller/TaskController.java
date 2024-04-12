@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import ch.ata.todoapp_backend.exception.TaskNotFoundException;
 import ch.ata.todoapp_backend.model.Task;
 import ch.ata.todoapp_backend.service.TaskService;
 
@@ -59,11 +60,10 @@ public class TaskController {
     }
 
     public ResponseEntity<String> updateTask(@PathVariable Integer id, @RequestBody Task task) {
-        Optional<Task> updatedTask = taskService.updateTask(id, task);
-        if (updatedTask.isPresent()) {
+        try {
             return new ResponseEntity<>("Task updated successfully", HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("Task not found", HttpStatus.NOT_FOUND);
+        } catch (TaskNotFoundException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
@@ -72,9 +72,10 @@ public class TaskController {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
-    /*@ExceptionHandler(TaskNotFoundException.class)
-    public ResponseEntity<String> handleTaskNotFound(TaskNotFound e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-    }
-    */
+    /*
+     * @ExceptionHandler(TaskNotFoundException.class)
+     * public ResponseEntity<String> handleTaskNotFound(TaskNotFound e) {
+     * return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+     * }
+     */
 }

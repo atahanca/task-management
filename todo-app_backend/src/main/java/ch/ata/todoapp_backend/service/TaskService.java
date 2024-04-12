@@ -21,7 +21,7 @@ public class TaskService {
     // Create operation. This method creates a new task and saves it to the
     // database.
     public Task createTask(Task task) {
-        taskRepository.save(task);
+
         return taskRepository.save(task);
     }
 
@@ -39,7 +39,7 @@ public class TaskService {
         return taskRepository.findById(id);
     }
 
-    public Optional<Task> updateTask(Integer id, Task task) {
+    public Task updateTask(Integer id, Task task) {
         Optional<Task> taskOptional = taskRepository.findById(id);
         if (taskOptional.isPresent()) {
             Task taskToUpdate = taskOptional.get();
@@ -47,8 +47,10 @@ public class TaskService {
             taskToUpdate.setTaskDescription(task.getTaskDescription());
             taskToUpdate.setTaskStatus(task.getTaskStatus());
             taskRepository.save(taskToUpdate);
+            return taskToUpdate;
+        } else {
+            throw new RuntimeException("Task not found with id: " + id);
         }
-        return taskOptional;
     }
 
     public void deleteTaskById(Integer id) {
