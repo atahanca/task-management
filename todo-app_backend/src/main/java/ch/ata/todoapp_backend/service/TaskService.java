@@ -32,7 +32,7 @@ public class TaskService {
 
     // Update operation. This method updates an existing task in the database
     public List<Task> getTasksByStatus(String status) {
-        return taskRepository.findByStatus(status);
+        return taskRepository.findByTaskStatus(status);
     }
 
     public Optional<Task> getTaskById(Integer id) {
@@ -54,11 +54,11 @@ public class TaskService {
     }
 
     public void deleteTaskById(Integer id) {
-        taskRepository.deleteTaskById(id);
+        taskRepository.deleteByTaskId(id);
     }
 
     public List<Task> getTasksByName(String name) {
-        return taskRepository.findByName(name);
+        return taskRepository.findByTaskName(name);
     }
 
 }

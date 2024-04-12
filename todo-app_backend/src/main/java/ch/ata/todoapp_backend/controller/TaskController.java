@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import ch.ata.todoapp_backend.exception.TaskNotFoundException;
@@ -59,6 +60,7 @@ public class TaskController {
         taskService.deleteTaskById(id);
     }
 
+    @PutMapping("/{id}")
     public ResponseEntity<String> updateTask(@PathVariable Integer id, @RequestBody Task task) {
         try {
             return new ResponseEntity<>("Task updated successfully", HttpStatus.OK);
