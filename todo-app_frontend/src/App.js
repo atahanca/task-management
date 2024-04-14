@@ -1,21 +1,18 @@
-import "./App.css";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Routes } from "react-router-dom";
-import Home from "./components/Home";
-import Tasks from "./components/Tasks";
-import AddTask from "./components/AddTask";
+import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './pages/Home'; // Ensure this path is correct
+import Tasks from './pages/Tasks'; // Ensure this path is correct
+import AddTask from './components/AddTask'; // Ensure this path is correct
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <switch>
-          <Routes>
-            <Route exact path="/" component={Home} />
-            <Route path="/tasks" component={Tasks} />
-            <Route path="/addTask" component={AddTask} />
-          </Routes>
-        </switch>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/tasks" element={<Tasks />} />
+          <Route path="/addTask" element={<AddTask />} />
+        </Routes>
       </div>
     </Router>
   );

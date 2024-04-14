@@ -12,7 +12,7 @@ import jakarta.persistence.Id;
 public class Task {
 
     @Id // This tells Hibernate that this is the primary key
-    @GeneratedValue(strategy = GenerationType.AUTO) // This tells Hibernate to generate the value automatically.
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // This tells Hibernate to generate the value automatically.
     private Integer taskId; // primary key
     private String taskName;
     private String taskDescription;

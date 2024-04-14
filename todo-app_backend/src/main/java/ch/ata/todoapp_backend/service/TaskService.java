@@ -3,9 +3,12 @@ package ch.ata.todoapp_backend.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import ch.ata.todoapp_backend.model.Task;
 import ch.ata.todoapp_backend.repository.TaskRepository;
 
+@Service
 public class TaskService {
     private final TaskRepository taskRepository; // creates a variable of type TaskRepository. This means that
                                                  // taskRepository must be an instance of TaskRepository
